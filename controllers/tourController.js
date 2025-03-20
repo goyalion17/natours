@@ -1,5 +1,5 @@
 const Tour = require('../models/tourModel');
-const APIFeatures = require('../utils/apiFeatures');
+const APIFeatures = require('../utils/apiFeatures.js');
 
 exports.aliasTopTours = async (req, res, next) => {
   req.query.limit = '5';
@@ -19,6 +19,7 @@ exports.getAllTours = async (req, res) => {
     const tours = await features.query;
 
     // SEND RESPONCE
+
     res.status(200).json({
       status: 'success',
       requestedAt: req.requestTime,
