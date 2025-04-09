@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const { emit } = require('process');
 
 const signToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -105,3 +106,17 @@ exports.restrictTo =
 
     next();
   };
+
+exports.forgotPassword = catchAsync(async (req, res, next) => {
+  // 1. Get user based on POSTed email
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) next(new AppError('There is no user with email address', 404));
+
+  // 2. Generate the random reset token
+  const resetToken = user.createPasswordResetToken();
+  await user.save({ validateBeforeSave: false });
+
+  // 3. Send it to user's email
+});
+
+exports.resetPassword = (req, res, next) => {};
