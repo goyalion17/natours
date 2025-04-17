@@ -41,26 +41,20 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     runValidators: true,
   });
 
-  // // Update the user
-  // const user = await User.findById(req.user.id);
-  // const allowed = ['username', 'email'];
-  // const { body: userData } = req;
-
-  // // Filter out unwanted input data from the body and update the user object
-  // Object.keys(userData)
-  //   .filter((key) => allowed.includes(key))
-  //   .forEach((key) => {
-  //     user[key] = userData[key];
-  //   });
-
-  // // Save the user
-  // await user.save({ validateModifiedOnly: true });
-
   res.status(200).json({
     status: 'success',
     data: {
       user: updatedUser,
     },
+  });
+});
+
+exports.deleteMe = catchAsync(async (req, res, next) => {
+  await User.findByIdAndUpdate(req.user.id, { active: false });
+
+  res.status(204).json({
+    status: 'success',
+    data: null,
   });
 });
 
