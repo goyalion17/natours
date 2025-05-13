@@ -8,6 +8,7 @@ const { protect, restrictTo } = require('../controllers/authController');
 const router = express.Router({ mergeParams: true });
 
 // POST /tour/234fgdfd/reviews
+// GET /tour/234fgdfd/reviews
 // POST /reviews
 
 router
