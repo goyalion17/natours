@@ -6,7 +6,7 @@ const reviewSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Review can not be empty!'],
     },
-    raiting: {
+    rating: {
       type: Number,
       min: [1, 'Raiting must be above 1.0'],
       max: [5, 'Raiting must be below 5.0'],
@@ -52,5 +52,3 @@ reviewSchema.pre(/^find/, function (next) {
 const Review = mongoose.model('Review', reviewSchema);
 
 module.exports = Review;
-
-
