@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
+mongoose.set('strictQuery', true); // або false, якщо хочете змінити поведінку
+
 process.on('uncaughtException', (err) => {
   console.log('UNCAUGHT EXEPTION!💥 Shutting down...');
   console.error(err.name, err.message);
@@ -18,14 +20,12 @@ const DB = process.env.DATABASE.replace(
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
     useUnifiedTopology: true,
   })
   .then(() => console.log('DB connection successful'))
   .catch((err) => {
     console.error('Failed to connect to MongoDB:', err.name, err.message);
-    process.exit(1); // Exit the process with failure
+    process.exit(1);
   });
 
 const port = process.env.PORT || 8000;
@@ -40,5 +40,3 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
   });
 });
-
-

@@ -9,8 +9,8 @@ const reviewSchema = new mongoose.Schema(
     },
     rating: {
       type: Number,
-      min: [1, 'Raiting must be above 1.0'],
-      max: [5, 'Raiting must be below 5.0'],
+      min: [1, 'Rating must be above 1.0'],
+      max: [5, 'Rating must be below 5.0'],
     },
     createdAt: {
       type: Date,
@@ -69,12 +69,12 @@ reviewSchema.statics.calcAverageRatings = async function (tourId) {
 
   if (stats.length > 0) {
     await Tour.findByIdAndUpdate(tourId, {
-      raitingQuantity: stats[0].nRating,
+      ratingsQuantity: stats[0].nRating,
       ratingsAverage: stats[0].avgRating,
     });
   } else {
     await Tour.findByIdAndUpdate(tourId, {
-      raitingQuantity: 0,
+      ratingsQuantity: 0,
       ratingsAverage: 4.5,
     });
   }

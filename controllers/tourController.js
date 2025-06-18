@@ -5,8 +5,8 @@ const AppError = require('../utils/appError');
 
 exports.aliasTopTours = async (req, res, next) => {
   req.query.limit = '5';
-  req.query.sort = 'raitingAverage,price';
-  req.query.fields = 'name, price,raitingAverage, summary, difficulty';
+  req.query.sort = 'ratingsAverage,price';
+  req.query.fields = 'name, price,ratingsAverage, summary, difficulty';
   next();
 };
 
@@ -18,13 +18,13 @@ exports.deleteTour = factory.deleteOne(Tour);
 
 exports.getTourStats = catchAsync(async (req, res, next) => {
   const stats = await Tour.aggregate([
-    { $match: { raitingAverage: { $gte: 4.5 } } },
+    { $match: { ratingsAverage: { $gte: 4.5 } } },
     {
       $group: {
         _id: { $toUpper: '$difficulty' },
         numTours: { $sum: 1 },
-        numRatings: { $sum: '$raitingQuantity' },
-        avgRating: { $avg: '$raitingAverage' },
+        numRatings: { $sum: '$ratingsQuantity' },
+        avgRating: { $avg: '$ratingsAverage' },
         avgPrice: { $avg: '$price' },
         minPrice: { $min: '$price' },
         maxPrice: { $max: '$price' },
