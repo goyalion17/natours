@@ -2,10 +2,12 @@
 /* eslint-disable */
 import 'core-js';
 import 'regenerator-runtime/runtime';
-import { login } from './login';
+import { login, logout } from './login';
 
 // DOM ELEMENTS
 // const mapBox = document.getElementById('map')
+const loginForm = document.querySelector('.form');
+const logOutBtn = document.querySelector('.nav__el--logout');
 
 // DELEGATION
 // if(mapBox) {
@@ -13,9 +15,12 @@ import { login } from './login';
 //   displayMap(locations)
 // }
 
-document.querySelector('.form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  login(email, password);
-});
+if (loginForm)
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    login(email, password);
+  });
+
+if (logOutBtn) logOutBtn.addEventListener('click', logout);
