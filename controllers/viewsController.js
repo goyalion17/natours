@@ -33,17 +33,17 @@ exports.getTour = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getLoginForm = (req, res) => {
-  res
-    .status(200)
-    .set(
-      'Content-Security-Policy',
-      "connect-src 'self' https://cdnjs.cloudflare.com",
-    )
-    .render('login', {
-      title: 'User Login',
-    });
-};
+// exports.getLoginForm = (req, res) => {
+//   res
+//     .status(200)
+//     .set(
+//       'Content-Security-Policy',
+//       "connect-src 'self' https://cdnjs.cloudflare.com",
+//     )
+//     .render('login', {
+//       title: 'User Login',
+//     });
+// };
 
 exports.getLoginForm = (req, res) => {
   res
@@ -52,4 +52,10 @@ exports.getLoginForm = (req, res) => {
     .render('login', {
       title: 'Log into your account',
     });
+};
+
+exports.getAccount = (req, res) => {
+  res.status(200).render('account', {
+    title: 'Your account',
+  });
 };
