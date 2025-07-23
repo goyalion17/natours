@@ -748,7 +748,7 @@ var _runtime = require("regenerator-runtime/runtime");
 var _login = require("./login");
 // DOM ELEMENTS
 // const mapBox = document.getElementById('map')
-const loginForm = document.querySelector('.form');
+const loginForm = document.querySelector('.form--login');
 const logOutBtn = document.querySelector('.nav__el--logout');
 // DELEGATION
 // if(mapBox) {
