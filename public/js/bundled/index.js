@@ -11838,6 +11838,6 @@ async function bookTour(bookBtn) {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./alerts":"6Mcnf"}]},["9lKfK","f2QDv"], "f2QDv", "parcelRequire11c7", {})
+},{"./alerts":"6Mcnf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["9lKfK","f2QDv"], "f2QDv", "parcelRequire11c7", {})
 
 //# sourceMappingURL=index.js.map
