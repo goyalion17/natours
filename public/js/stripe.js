@@ -7,7 +7,7 @@ export async function bookTour(bookBtn) {
   try {
     const res = await fetch(`/api/v1/bookings/checkout-session/${tourId}`);
     const data = await res.json();
-    console.log(data)
+    // console.log(data)
     if (data.session && data.session.url) {
       window.location.href = data.session.url;
     } else {
