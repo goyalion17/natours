@@ -5,12 +5,13 @@ const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
 const User = require('../models/userModel');
 
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   // 1: Get the currently booked tour
   const tour = await Tour.findById(req.params.tourId);
 
   // 2: Create checkout session
-  const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     // success_url: `${req.protocol}://${req.get('host')}/my-tours/?tour=${req.params.tourId}&user=${req.user.id}&price=${tour.price}`,
