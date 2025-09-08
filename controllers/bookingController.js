@@ -4,6 +4,7 @@ const Booking = require('../models/bookingModel');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
 const User = require('../models/userModel');
+const AppError = require('../utils/appError');
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -136,7 +137,7 @@ exports.webhookCheckout = (req, res, next) => {
     event = stripe.webhooks.constructEvent(
       req.body,
       sig,
-      process.env.WEBHOOK_SECRET,
+      process.env.STRIPE_WEBHOOK_SECRET,
     );
   } catch (err) {
     return res.status(400).send(`Webhook Error ${err.message}`);
