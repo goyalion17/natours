@@ -2,7 +2,7 @@ const Tour = require('../models/tourModel');
 const User = require('../models/userModel');
 const Booking = require('../models/bookingModel');
 const catchAsync = require('../utils/catchAsync');
-const AppError = require('../utils/appError.js');
+const AppError = require('../utils/appError');
 
 exports.alerts = (req, res, next) => {
   const { alert } = req.query;
@@ -49,6 +49,15 @@ exports.getLoginForm = (req, res) => {
     .set('Content-Security-Policy', "connect-src 'self' http://127.0.0.1:3000/")
     .render('login', {
       title: 'Log into your account',
+    });
+};
+
+exports.getSignupForm = (req, res) => {
+  res
+    .status(200)
+    .set('Content-Security-Policy', "connect-src 'self' http://127.0.0.1:3000/")
+    .render('signup', {
+      title: 'Create your account',
     });
 };
 
